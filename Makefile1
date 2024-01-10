@@ -1,0 +1,21 @@
+CC = gcc
+CFLAGS = -g -Wall
+
+DEPS = header.h timer.h
+
+OBJ = parallel.o \
+      basicThread.o \
+      countBurningNeighbours.o \
+      countBurningNeighbours_ClosedBoundaries.o \
+      decide_F_to_B.o \
+      decide_B_to_X.o \
+      decide_B_to_X_VaryingDays.o
+
+%.o: %.c $(DEPS)
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+par: $(OBJ)
+	$(CC) $(CFLAGS) -o $@ $^
+
+clean:
+	rm -f *.o par
